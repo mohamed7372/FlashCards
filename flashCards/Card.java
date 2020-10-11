@@ -9,12 +9,6 @@ class Card {
 		this.definition = definition;
 	}
 
-	public String check(String input) {
-		if(input.equals(this.definition))
-			return "Correct!";
-		return "Wrong. The right answer is \"" + this.definition + "\".";
-	}
-	
 	@Override
 	public String toString() {
 		return "Card:\n" + card + "\nDefinition:\n" + definition;
