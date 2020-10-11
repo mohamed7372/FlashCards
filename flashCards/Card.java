@@ -1,6 +1,6 @@
 package flashCards;
 
-public class Card {
+class Card {
 	String card;
 	String definition;
 	
@@ -9,6 +9,12 @@ public class Card {
 		this.definition = definition;
 	}
 
+	public String check(String input) {
+		if(input.equals(this.definition))
+			return "Your answer is right!";
+		return "Your answer is wrong...";
+	}
+	
 	@Override
 	public String toString() {
 		return "Card:\n" + card + "\nDefinition:\n" + definition;
