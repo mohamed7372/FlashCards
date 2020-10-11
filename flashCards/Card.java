@@ -11,8 +11,8 @@ class Card {
 
 	public String check(String input) {
 		if(input.equals(this.definition))
-			return "Your answer is right!";
-		return "Your answer is wrong...";
+			return "Correct!";
+		return "Wrong. The right answer is \"" + this.definition + "\".";
 	}
 	
 	@Override
