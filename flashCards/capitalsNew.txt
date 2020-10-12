@@ -1,0 +1,6 @@
+print()
+outputs text
+france
+paris
+hello
+by bye
