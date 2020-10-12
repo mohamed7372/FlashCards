@@ -11,8 +11,11 @@ public class Main {
 	static Scanner sc = new Scanner(System.in);
 	static ArrayList<Card> cards = new ArrayList<Card>(); 
 	static String allInputOutput = "";
+	static String[] input = {"",""};
 	
 	public static void main(String[] args) {
+		importLancePrg(args);
+		sc = new Scanner(System.in);
 		int fin = 0;
 		while(fin == 0) {
 			String s = "Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):\n";
@@ -28,20 +31,30 @@ public class Main {
 				remove();
 				break;
 			case "import":
-				importCard();
+				System.out.println("File name:");
+				saveInOut("File name:");
+				String nameFile = sc.nextLine();
+				saveInOut(nameFile + "\n");
+				importCard(nameFile);
 				sc = new Scanner(System.in);
 				break;
 			case "ask":
 				ask();
 				break;
 			case "export":
-				exportCard();
+				System.out.println("File name:");
+				saveInOut("File name:\n");
+				String nameFile1 = sc.nextLine();
+				saveInOut(nameFile1 + "\n"); 
+				exportCard(nameFile1);
 				break;
 			case "exit":
 				fin = 1;
 				String exitStr = "Bye bye!";
 				saveInOut(exitStr);
 				System.out.println(exitStr);
+				if(!input[1].isEmpty())
+					exportCard(input[1]);
 				break;
 			case "hardest card":
 				hardestCard();
@@ -60,6 +73,18 @@ public class Main {
 		}
 	}
 
+	static void importLancePrg(String[] args) {
+		for (int i = 0; i < args.length; i++) {
+			if(args[i].equals("-import") && (i+1)<args.length)
+				input[0] = args[i+1];
+			else if(args[i].equals("-export") && (i+1)<args.length)
+				input[1] = args[i+1];
+		}
+		if(!input[0].isEmpty()) {
+			importCard(input[0]);
+		}
+	}
+	
 	static boolean isExiste(String str, int n) {
 		if(n == 1) {
 			for (int j=0; j<cards.size(); j++) {
@@ -135,11 +160,7 @@ public class Main {
 		}
 		System.out.println("Can't remove \"" + card + "\": there is no such card.");
 	}
-	static void importCard() {
-		System.out.println("File name:");
-		saveInOut("File name:");
-		String nameFile = sc.nextLine();
-		saveInOut(nameFile + "\n");
+	static void importCard(String nameFile) {
 		File f = new File("C:\\Users\\HP\\eclipse-work\\zhard7\\src\\flashCards\\" + nameFile);
 		try {
 			if(!f.exists()) {
@@ -207,11 +228,7 @@ public class Main {
 			}
 		}
 	}
-	static void exportCard() {
-		System.out.println("File name:");
-		saveInOut("File name:\n");
-		String nameFile = sc.nextLine();
-		saveInOut(nameFile + "\n"); 
+	static void exportCard(String nameFile) {
 		File f = new File("C:\\Users\\HP\\eclipse-work\\zhard7\\src\\flashCards\\" + nameFile);
 		try {
 			FileWriter fw = new FileWriter(f);
