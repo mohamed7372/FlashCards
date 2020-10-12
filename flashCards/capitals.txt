@@ -1,6 +1,12 @@
 print()
 outputs text
+1
 france
 paris
+0
 hello
 by bye
+1
+benrabah
+mohamed
+12
